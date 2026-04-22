@@ -47,28 +47,26 @@ export default function FounderSection() {
                   id="founder-heading"
                   className="text-2xl sm:text-3xl font-black text-slate-900 mb-6 leading-tight"
                 >
-                  Built by a Problem Solver for the People Who{" "}
-                  <span className="text-[#1a3a5c]">Actually Build the World</span>
+                  Why I Built This
                 </h2>
 
                 <div className="space-y-4 text-slate-600 text-base leading-relaxed mb-8">
                   <p>
-                    I watched my uncle — a master plumber with 20 years of experience — lose a weekend
-                    every month to invoice paperwork. He&apos;s one of the best at his craft. He&apos;s
-                    terrible at spreadsheets. And that&apos;s not a skill gap — that&apos;s a{" "}
-                    <strong className="text-slate-800">tool gap</strong>.
+                    My uncle is a master plumber. Twenty years in the trade, never missed a job.
+                    But every Sunday evening he&apos;d sit at the kitchen table, squinting at a laptop,
+                    trying to remember what he charged for a job he finished on Thursday. He&apos;d lose
+                    an hour or two every week just doing that. Sometimes he&apos;d forget to invoice
+                    altogether and just let it go.
                   </p>
                   <p>
-                    VoiceBill isn&apos;t an &ldquo;app for contractors.&rdquo; It&apos;s a tool engineered
-                    for people who work with their hands, not keyboards. People who fix things, build
-                    things, and keep the city running — but shouldn&apos;t have to be accountants to
-                    get paid.
+                    That bothered me. He was losing real money, not because he was bad at his job,
+                    but because the tools available to him were built for office workers. So I started
+                    building something he could actually use on a job site, with dirty hands, in the sun,
+                    before he even got back in the van.
                   </p>
                   <p>
-                    We&apos;re building this for every skilled tradesperson on the planet — whether
-                    you&apos;re a plumber in Texas, an HVAC tech in Manchester, or an electrician in
-                    Hyderabad.{" "}
-                    <strong className="text-slate-800">If you work with your hands, this is built for you.</strong>
+                    VoiceBill is that tool. You talk, it invoices. No forms, no spreadsheets, no chasing
+                    payments two weeks later. <strong className="text-slate-800">If you work with your hands, your billing should be just as effortless.</strong>
                   </p>
                 </div>
 
