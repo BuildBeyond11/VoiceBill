@@ -51,7 +51,8 @@ export default function Navbar() {
           ))}
           <a
             href="#waitlist"
-            className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold px-5 py-2 rounded-xl transition-colors duration-150 shadow-lg shadow-orange-500/20"
+            className="text-white text-sm font-bold px-5 py-2 rounded-xl transition-all duration-150 shadow-lg hover:opacity-90"
+            style={{ background: "#FF4F00" }}
           >
             Join Waitlist
           </a>

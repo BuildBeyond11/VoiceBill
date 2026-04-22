@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     description:
       "Turn a 30-second voice note into a professional billable invoice. Built for plumbers, HVAC techs, and electricians.",
     type: "website",
-    locale: "en_IN",
+    locale: "en_US",
     siteName: "VoiceBill Invoicing",
   },
   twitter: {
@@ -62,7 +63,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#1a3a5c",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FF4F00" },
+    { media: "(prefers-color-scheme: dark)",  color: "#0d2238" },
+  ],
 };
 
 export default function RootLayout({
@@ -76,8 +80,16 @@ export default function RootLayout({
       <head>
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="VoiceBill" />
+        <meta name="application-name" content="VoiceBill" />
+        <meta name="msapplication-TileColor" content="#FF4F00" />
       </head>
-      <body className="min-h-screen bg-white text-slate-900">{children}</body>
+      <body className="min-h-screen bg-white text-slate-900">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

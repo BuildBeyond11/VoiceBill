@@ -6,8 +6,8 @@
   --industry-blue: #1a3a5c;
   --industry-blue-dark: #0d2238;
   --industry-blue-light: #2563a8;
-  --accent-orange: #f97316;
-  --accent-orange-light: #fb923c;
+  --accent-orange: #FF4F00;
+  --accent-orange-light: #ff6a2b;
   --clean-white: #f8fafc;
   --border-color: #e2e8f0;
 }
@@ -35,10 +35,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 { letter-spacing: -0.04em; }
+h2 { letter-spacing: -0.025em; }
+
 @keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 79, 0, 0.7); }
+  70%  { transform: scale(1);    box-shadow: 0 0 0 10px rgba(255, 79, 0, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 79, 0, 0); }
 }
 
 .pulse-orange {
@@ -47,7 +50,7 @@ body {
 
 @keyframes waveform {
   0%, 100% { height: 4px; }
-  50% { height: 20px; }
+  50%       { height: 20px; }
 }
 
 .wave-bar {
@@ -60,3 +63,20 @@ body {
 .wave-bar:nth-child(5) { animation-delay: 0.2s; }
 .wave-bar:nth-child(6) { animation-delay: 0.1s; }
 .wave-bar:nth-child(7) { animation-delay: 0.05s; }
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Bento card */
+.bento-card {
+  background: rgba(15, 25, 35, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+}
