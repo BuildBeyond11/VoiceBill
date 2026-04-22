@@ -47,26 +47,31 @@ export default function FounderSection() {
                   id="founder-heading"
                   className="text-2xl sm:text-3xl font-black text-slate-900 mb-6 leading-tight"
                 >
-                  Why I Built This
+                  Built for the People Who{" "}
+                  <span className="text-[#1a3a5c]">Actually Keep the World Running</span>
                 </h2>
 
-                <div className="space-y-4 text-slate-600 text-base leading-relaxed mb-8">
+                <div className="space-y-5 text-slate-600 text-base leading-relaxed mb-8">
                   <p>
                     My uncle is a master plumber. Twenty years in the trade, never missed a job.
-                    But every Sunday evening he&apos;d sit at the kitchen table, squinting at a laptop,
-                    trying to remember what he charged for a job he finished on Thursday. He&apos;d lose
-                    an hour or two every week just doing that. Sometimes he&apos;d forget to invoice
-                    altogether and just let it go.
+                    Every Sunday evening he&apos;d sit at the kitchen table squinting at a laptop,
+                    trying to remember what he charged on Thursday. An hour gone. Sometimes two.
+                    Occasionally he&apos;d skip the invoice entirely and just absorb the loss.
                   </p>
                   <p>
-                    That bothered me. He was losing real money, not because he was bad at his job,
-                    but because the tools available to him were built for office workers. So I started
-                    building something he could actually use on a job site, with dirty hands, in the sun,
-                    before he even got back in the van.
+                    He is brilliant at his craft. He is not brilliant at spreadsheets.
+                    And honestly, he shouldn&apos;t have to be.
+                    That is not a personal failing. That is a{" "}
+                    <strong className="text-slate-800">broken system</strong> designed by people
+                    who have never worked a job site in their lives.
                   </p>
                   <p>
-                    VoiceBill is that tool. You talk, it invoices. No forms, no spreadsheets, no chasing
-                    payments two weeks later. <strong className="text-slate-800">If you work with your hands, your billing should be just as effortless.</strong>
+                    So I built VoiceBill. You finish the job, you speak for 20 seconds, the invoice
+                    is done and sent before you start the van. No laptop. No forms. No Sunday evenings
+                    lost to paperwork.{" "}
+                    <strong className="text-slate-800">
+                      If you work with your hands, you deserve tools that work as hard as you do.
+                    </strong>
                   </p>
                 </div>
 
