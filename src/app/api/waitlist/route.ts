@@ -7,6 +7,7 @@ export async function POST(req: NextRequest) {
   try {
     const body  = await req.json();
     const email = typeof body?.email === "string" ? body.email.trim() : "";
+    const message = typeof body?.message === "string" ? body.message.slice(0, 1000) : undefined;
 
     if (!email || !EMAIL_RE.test(email)) {
       return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
@@ -17,7 +18,7 @@ export async function POST(req: NextRequest) {
       req.headers.get("x-real-ip") ??
       undefined;
 
-    const result = addToWaitlist(email, ip);
+    const result = addToWaitlist(email, ip, message);
 
     if (result.duplicate) {
       return NextResponse.json(

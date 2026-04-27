@@ -118,6 +118,9 @@ export default function AdminPage() {
                     <th className="text-left px-6 py-3 text-slate-500 font-semibold text-xs uppercase tracking-wider">
                       IP
                     </th>
+                    <th className="text-left px-6 py-3 text-slate-500 font-semibold text-xs uppercase tracking-wider">
+                      Message
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -147,6 +150,13 @@ export default function AdminPage() {
                       </td>
                       <td className="px-6 py-4 text-slate-400 font-mono text-xs">
                         {entry.ip ?? "—"}
+                      </td>
+                      <td className="px-6 py-4 text-slate-600 text-sm max-w-xs">
+                        {entry.message ? (
+                          <span className="block whitespace-pre-wrap break-words">{entry.message}</span>
+                        ) : (
+                          <span className="text-slate-300">—</span>
+                        )}
                       </td>
                     </tr>
                   ))}

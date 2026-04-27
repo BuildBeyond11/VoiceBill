@@ -6,6 +6,7 @@ export interface WaitlistEntry {
   email: string;
   joinedAt: string;
   ip?: string;
+  message?: string;
 }
 
 // On Vercel, process.cwd() is read-only — use /tmp which is writable.
@@ -31,7 +32,8 @@ export function readWaitlist(): WaitlistEntry[] {
 
 export function addToWaitlist(
   email: string,
-  ip?: string
+  ip?: string,
+  message?: string
 ): { ok: boolean; duplicate: boolean } {
   const list = readWaitlist();
   const normalized = email.trim().toLowerCase();
@@ -43,6 +45,7 @@ export function addToWaitlist(
     email: normalized,
     joinedAt: new Date().toISOString(),
     ip,
+    ...(message?.trim() ? { message: message.trim() } : {}),
   };
   list.push(entry);
   fs.writeFileSync(DATA_FILE, JSON.stringify(list, null, 2), "utf-8");

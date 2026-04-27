@@ -12,6 +12,7 @@ type ErrorType = "duplicate" | "generic" | null;
 
 export default function WaitlistForm({ size = "default" }: { size?: "default" | "large" }) {
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [errorType, setErrorType] = useState<ErrorType>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -40,7 +41,7 @@ export default function WaitlistForm({ size = "default" }: { size?: "default" | 
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, message: message.trim() || undefined }),
       });
       const data = await res.json();
 
@@ -97,48 +98,64 @@ export default function WaitlistForm({ size = "default" }: { size?: "default" | 
           </motion.div>
         ) : (
           <motion.div key="form" className="flex flex-col gap-3">
-            <form
-              onSubmit={handleSubmit}
-              className={`flex flex-col sm:flex-row gap-3 ${isLarge ? "sm:gap-4" : ""}`}
-            >
-              <div className="flex-1">
-                <Input
-                  type="email"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => { setEmail(e.target.value); clearErr(); }}
-                  className={`w-full bg-white border-2 rounded-xl text-slate-900 placeholder-slate-400 font-medium transition-colors ${
-                    isLarge ? "h-14 text-lg px-5" : "h-12 px-4"
-                  } ${
-                    errorType === "duplicate"
-                      ? "border-amber-400 focus:border-amber-500"
-                      : errorType === "generic"
-                      ? "border-red-400 focus:border-red-500"
-                      : "border-slate-200 focus:border-blue-600"
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex-1">
+                  <Input
+                    type="email"
+                    placeholder="your@email.com"
+                    value={email}
+                    onChange={(e) => { setEmail(e.target.value); clearErr(); }}
+                    className={`w-full bg-white border-2 rounded-xl text-slate-900 placeholder-slate-400 font-medium transition-colors ${
+                      isLarge ? "h-14 text-lg px-5" : "h-12 px-4"
+                    } ${
+                      errorType === "duplicate"
+                        ? "border-amber-400 focus:border-amber-500"
+                        : errorType === "generic"
+                        ? "border-red-400 focus:border-red-500"
+                        : "border-slate-200 focus:border-blue-600"
+                    }`}
+                    aria-label="Email address"
+                    aria-describedby={error ? "waitlist-error" : undefined}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className={`bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold rounded-xl transition-all duration-150 shadow-lg shadow-orange-200 whitespace-nowrap ${
+                    isLarge ? "h-14 px-8 text-lg" : "h-12 px-6"
                   }`}
-                  aria-label="Email address"
-                  aria-describedby={error ? "waitlist-error" : undefined}
-                />
+                >
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Locking in...
+                    </span>
+                  ) : (
+                    "Get Early Access →"
+                  )}
+                </Button>
               </div>
-              <Button
-                type="submit"
-                disabled={loading}
-                className={`bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold rounded-xl transition-all duration-150 shadow-lg shadow-orange-200 whitespace-nowrap ${
-                  isLarge ? "h-14 px-8 text-lg" : "h-12 px-6"
-                }`}
-              >
-                {loading ? (
-                  <span className="flex items-center gap-2">
-                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                    </svg>
-                    Locking in...
-                  </span>
-                ) : (
-                  "Get Early Access →"
+
+              <div>
+                <textarea
+                  placeholder="What's your biggest invoicing headache right now? (optional)"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  maxLength={1000}
+                  rows={3}
+                  className={`w-full bg-white border-2 border-slate-200 focus:border-blue-600 rounded-xl text-slate-900 placeholder-slate-400 font-medium transition-colors resize-none outline-none focus:outline-none ${
+                    isLarge ? "text-base px-5 py-4" : "text-sm px-4 py-3"
+                  }`}
+                  aria-label="Message or suggestion (optional)"
+                />
+                {message.length > 0 && (
+                  <p className="text-slate-400 text-xs mt-1 text-right">{message.length}/1000</p>
                 )}
-              </Button>
+              </div>
             </form>
 
             {/* Error banner — always visible regardless of background */}

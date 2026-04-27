@@ -7,11 +7,17 @@ export async function GET() {
   const list = readWaitlist();
 
   const rows = [
-    ["#", "Email", "Joined At", "IP"].join(","),
+    ["#", "Email", "Joined At", "IP", "Message"].join(","),
     ...list
       .sort((a, b) => new Date(b.joinedAt).getTime() - new Date(a.joinedAt).getTime())
       .map((e, i) =>
-        [list.length - i, `"${e.email}"`, `"${e.joinedAt}"`, e.ip ?? ""].join(",")
+        [
+          list.length - i,
+          `"${e.email}"`,
+          `"${e.joinedAt}"`,
+          e.ip ?? "",
+          e.message ? `"${e.message.replace(/"/g, '""')}"` : "",
+        ].join(",")
       ),
   ].join("\n");
 
